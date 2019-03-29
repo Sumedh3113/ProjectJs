@@ -10,18 +10,8 @@ GAME RULES:
 */
 
 var score, activePlayer, roundScore;
-score = [0,0];
-activePlayer = 0;
-roundScore = 0;
 
-
-
-//console.log(dice);
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+init();
 
 document.querySelector('.dice').style.display = 'none';
 
@@ -69,6 +59,8 @@ else{
                                                      
                                                      });
 
+// as init function is getting called at begining we dont have to place a separate call to it after hold button click
+
 document.querySelector('.btn-new').addEventListener('click', init);
 
 
@@ -84,12 +76,34 @@ function nextPlayer(){
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
     
-    document.querySelector('.dice').style.display = 'none';
-    
+    document.querySelector('.dice').style.display = 'none';    
     
 }
 
+function init(){
+    score = [0,0];
+    activePlayer = 0;
+    roundScore = 0;
 
+
+
+//console.log(dice);
+
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+document.getElementById('name-0').textContent = 'Player 1';
+document.getElementById('name-1').textContent = 'Player 2';
+document.querySelector('.player-0-panel').classList.remove('winner');
+document.querySelector('.player-1-panel').classList.remove('winner');
+document.querySelector('.player-0-panel').classList.remove('active');
+document.querySelector('.player-1-panel').classList.remove('active');
+document.querySelector('.player-0-panel').classList.add('active');
+    
+    
+}
 
 
 
