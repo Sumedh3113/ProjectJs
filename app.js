@@ -44,21 +44,50 @@ if(dice !== 1){
     document.querySelector('#current-' + activePlayer).textContent = roundScore;
     
 }else{
-    activePlayer === 0 ? activePlayer = 1:activePlayer=0;
-    roundScore = 0;
-    
-    
+    nextPlayer();
     
 }    
-    
-    
-
                 });
 
+document.querySelector('.btn-hold').addEventListener('click', function()    {
+        score[activePlayer] +=roundScore;
+        document.querySelector('#score-' + activePlayer).textContent = score[activePlayer];
+
+if(score[activePlayer] >= 20){
+    document.querySelector('#name-' + activePlayer).textContent ='Winner!!';
+    document.querySelector('.dice').style.display='none';
+    document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
+    document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+    
+}
+else{
+    nextPlayer();
+    
+}
+
+                                                     
+                                                     
+                                                     });
+
+document.querySelector('.btn-new').addEventListener('click', init);
 
 
 
-
+function nextPlayer(){
+    
+    activePlayer === 0 ? activePlayer = 1:activePlayer = 0;
+    roundScore = 0;
+    
+    document.querySelector('#current-0').textContent = '0';
+    document.querySelector('#current-1').textContent = '0';
+    
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+    
+    document.querySelector('.dice').style.display = 'none';
+    
+    
+}
 
 
 
