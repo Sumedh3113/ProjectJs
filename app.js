@@ -30,7 +30,7 @@ var dice;
                                                      
 dice = Math.floor(Math.random()*6+1);                                                     
                                                      
-document.querySelector('#current-' + activePlayer).textContent = dice;                                                   
+                                                   
 
 var diceDom = document.querySelector('.dice');
 
@@ -38,6 +38,32 @@ var diceDom = document.querySelector('.dice');
 diceDom.style.display = 'block';
 diceDom.src = 'dice-' + dice + '.png';
 
-    document.getElementById('score-0').textContent = dice;
+  //  document.getElementById('score-0').textContent = dice;
+if(dice !== 1){
+    roundScore +=dice;
+    document.querySelector('#current-' + activePlayer).textContent = roundScore;
+    
+}else{
+    activePlayer === 0 ? activePlayer = 1:activePlayer=0;
+    roundScore = 0;
+    
+    
+    
+}    
+    
+    
 
                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
