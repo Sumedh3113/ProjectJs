@@ -10,12 +10,12 @@ var budgetController = (function(){
 var UIcontroller = (function(){
     
     
-    return ({
+    return {
         getInput:function(){
             
         }
         
-    });
+    };
     
 })();
 
