@@ -61,15 +61,15 @@ var budgetController = (function(){
     
 })();
 
-
-
 var UIcontroller = (function(){
     
     var DomObject = {
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
-        inputbtn:'.add__btn'
+        inputbtn:'.add__btn',
+        incomeContainer: 'income__list',
+        expenseContainer 'expenses__list':
         
     };
     
@@ -84,6 +84,32 @@ var UIcontroller = (function(){
                 
             };
         },
+        addElement: function(obj, type){
+            var html, newHtml,element;
+            
+            
+            if(type === 'inc'){
+                element = DomObject.incomeContainer;
+                html = '<div class="item clearfix" id="%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+                
+            }
+            else{
+                element = DomObject.expenseContainer;
+                
+                html = '<div class="item clearfix" id="%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>
+                
+                '
+            }
+            
+            newHtml = html.replace(%id%, obj.id);
+            newHtml = html.replace(%description%, obj.description);
+            newHtml = html.replace(%value%, obj.value);
+            
+            
+            
+        }
+        
+        ,
         
         getDom: function() { // making private object returnable i.e public
             return DomObject;
