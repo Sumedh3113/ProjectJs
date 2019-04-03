@@ -102,9 +102,13 @@ var UIcontroller = (function(){
             }
             
             newHtml = html.replace(%id%, obj.id);
-            newHtml = html.replace(%description%, obj.description);
-            newHtml = html.replace(%value%, obj.value);
+            // first replace html then make chances in newHtml else old %id% will
+            //still be there
+            newHtml = newHtml.replace(%description%, obj.description);
+            newHtml = newHtml.replace(%value%, obj.value);
             
+            
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
             
             
         }
@@ -141,9 +145,11 @@ var Controller = (function(budgetCntrl, UICntrl){
     
     
     var calculate = function(){
-       var input =  UICntrl.getInput();
+        var input =  UICntrl.getInput();
         //console.log(input)
         var additem =  budgetCntrl.additem(input.type,input.description,input.value);  
+        
+        UICntrl.addElement(additem, input.type);
         
     };
     
