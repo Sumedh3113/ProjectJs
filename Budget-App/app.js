@@ -174,6 +174,11 @@ var UIcontroller = (function(){
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
             
         },
+        removeElement:function(selectorID){
+               var elem = document.getElementById(selectorID);
+                elem.parentNode.removeChild(elem);
+            
+        },
         
         getDom: function() { // making private object returnable i.e public
             return DomObject;
@@ -285,9 +290,9 @@ var Controller = (function(budgetCntrl, UICntrl){
         // Delete item from DataStructure
             budgetCntrl.deleteItem(type,ID);
         // Delete item from UI
-            
+            UICntrl.removeElement(itemId);
         // Update Budget
-            
+            updateBudget();
         }
     }
     
