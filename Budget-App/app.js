@@ -171,6 +171,28 @@ var UIcontroller = (function(){
     };
     
     
+    formatString = function(num,type){
+        var numSplit, int, dec;
+        
+        num = Math.abs(num);
+        num = num.toFixed(2);
+        
+        numSplit =  num.split('.');
+        
+        int = numSplit[0];
+        dec = numSplit[1];
+        
+        if(int.length > 3){
+            int = int.substr(0,int.length-3) + ',' + int.substr(int.length -3,3);
+            
+        }
+        
+        return (type === 'exp' ? '-':'+') + ' '+int + '.' + dec;
+        
+        
+        
+    }
+    
     return {
         getInput: function() {
             return {
@@ -202,7 +224,7 @@ var UIcontroller = (function(){
             // first replace html then make chances in newHtml else old %id% will
             //still be there
             newHtml = newHtml.replace('%description%', obj.description);
-            newHtml = newHtml.replace('%value%', obj.value);
+            newHtml = newHtml.replace('%value%', formatString(obj.value,type));
             
             //console.log(newHtml);
             
@@ -236,9 +258,14 @@ var UIcontroller = (function(){
             
         },
         displayBudget: function(obj){
-            document.querySelector(DomObject.budgetlabel).textContent = obj.bud;
-            document.querySelector(DomObject.budgetInc).textContent = obj.totalinc;
-            document.querySelector(DomObject.budgetExp).textContent = obj.totalexp;
+            var type;
+            
+               obj.bud > 0 ? type = 'inc' : type ='exp';
+               
+            
+            document.querySelector(DomObject.budgetlabel).textContent = formatString(obj.bud,type);
+            document.querySelector(DomObject.budgetInc).textContent = formatString(obj.totalinc,'inc');
+            document.querySelector(DomObject.budgetExp).textContent = formatString(obj.totalexp,'exp');
             
             if(obj.percent > 0)
                {
